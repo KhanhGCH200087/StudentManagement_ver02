@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container col-md-8 text-center mt-3">
+    <div class="bs-example" data-example-id="striped-table">
+        <table class="table table-striped">
+            <thead>
+             <tr>
+                <th colspan="3">
+                    <h1 class="text text-default">Class List</h1>
+                </th>
+            </tr>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>
+                    <a class="text-decoration-none" href="{{ path('classroom_add') }}">
+                        <button type="button" class="btn btn-secondary" >New</button>
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for classroom in classrooms %}
+                <tr>
+                    <th scope="row">{{ classroom.id }}</th>
+                    <td>{{ classroom.name }}</td>
+                    <td>
+                        <a class="text-decoration-none" href="{{ path('classroom_detail', {'id' : classroom.id }) }}">
+                            <button type="button" class="btn btn-success">Detail</button>             
+                        </a>
+                        <a class="text-decoration-none" href="{{ path('classroom_edit', {'id' : classroom.id }) }}">
+                            <button type="button" class="btn btn-primary">Edit</button>   
+                        </a>
+    	                <a class="text-decoration-none" href="{{ path('classroom_delete', {'id' : classroom.id }) }}"
+                            onclick="return confirm('Are you sure to delete this account ?');">
+                                <button type="button" class="btn btn-danger">Delete</button>   
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+{% endblock %}

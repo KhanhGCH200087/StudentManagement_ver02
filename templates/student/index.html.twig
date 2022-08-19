@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StudentController!{% endblock %}
+
+{% block body %}
+<div class="container col-md-8 text-center mt-3">
+<table class="table table-light">
+    <tr>
+        <th colspan="3">
+            <h1 class="text text-primary">Student List</h1>
+        </th>
+        <th>
+            <a class="text-decoration-none" href="{{ path('student_add') }}">
+                <button type="button" class="btn btn-primary" >Add New</button>
+            </a>
+        </th>
+    </tr>
+    <tr>
+
+        <th class="text text-success">Id</th>
+        <th class="text text-success">Name</th>
+        <th class="text text-success">Image </th>
+        <th class="text text-info"> Function </th>
+
+    </tr>
+    {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td> 
+            <td>
+                <a class="text-decoration-none" href="{{ path('teacher_detail', {'id' : student.id }) }}">
+                    <img src="{{ student.image }}" width="100" height="100">
+                </a>
+           </td>
+            <td>
+            <div class="btn-group">
+                <a class="text-decoration-none" href="{{ path('teacher_detail', {'id' : student.id }) }}">
+                    <button type="button" class="btn btn-primary">Detail</button>             
+                </a>
+                <a class="text-decoration-none" href="{{ path('teacher_edit', {'id' : student.id }) }}">
+                    <button type="button" class="btn btn-success">Edit</button>   
+                </a>
+    	        <a class="text-decoration-none" href="{{ path('teacher_delete', {'id' : student.id }) }}"
+                onclick="return confirm('Are you sure to delete this account ?');"
+                >
+                    <button type="button" class="btn btn-warning">Delete</button>   
+                </a>
+            </div>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

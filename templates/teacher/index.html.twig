@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container col-md-8 text-center mt-3">
+    <div class="bs-example" data-example-id="striped-table">
+        <table class="table table-striped">
+            <thead>
+             <tr>
+                <th colspan="10">
+                    <h1 class="text text-default">Teacher List</h1>
+                </th>
+            </tr>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>
+                    <a class="text-decoration-none" href="{{ path('teacher_add') }}">
+                        <button type="button" class="btn btn-secondary" >New</button>
+                    </a>
+                 </th>   
+            </tr>
+            </thead>
+            <tbody>
+            {% for teacher in teachers %}
+                <tr>
+                    <th scope="row">{{ teacher.id }}</th>
+                    <td>{{ teacher.name }}</td>
+                    <td>
+                        <a class="text-decoration-none" href="{{ path('teacher_detail', {'id' : teacher.id }) }}">
+                            <img src="{{ teacher.image }}" width="100" height="100">
+                        </a>
+                    </td>
+                    <td>
+                        <a class="text-decoration-none" href="{{ path('teacher_detail', {'id' : teacher.id }) }}">
+                            <button type="button" class="btn btn-success">Detail</button>             
+                        </a>
+                        <a class="text-decoration-none" href="{{ path('teacher_edit', {'id' : teacher.id }) }}">
+                            <button type="button" class="btn btn-primary">Edit</button>   
+                        </a>
+    	                <a class="text-decoration-none" href="{{ path('teacher_delete', {'id' : teacher.id }) }}"
+                            onclick="return confirm('Are you sure to delete this account ?');">
+                                <button type="button" class="btn btn-danger">Delete</button>   
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+{% endblock %}
